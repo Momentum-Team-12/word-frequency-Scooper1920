@@ -2,7 +2,7 @@ STOP_WORDS = [
     'a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has', 'he',
     'i', 'in', 'is', 'it', 'its', 'of', 'on', 'that', 'the', 'to', 'were',
     'will', 'with'
-]
+] 
 
 
 def print_word_freq(file):
