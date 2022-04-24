@@ -1,3 +1,5 @@
+import string
+
 STOP_WORDS = [
     'a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has', 'he',
     'i', 'in', 'is', 'it', 'its', 'of', 'on', 'that', 'the', 'to', 'were',
@@ -30,14 +32,25 @@ if __name__ == "__main__":
 f=open(file,"r" )
 data=f.read()
 wordlist=data.split()
-print(wordlist)
 
-for words in wordlist: 
+
+for words in wordlist:
+    wordsl=words.lower()
+    wordsla=wordsl.translate(str.maketrans('','',string.punctuation))
     newlist=[]
-    occurences= str(data.count(words))
-    if words in STOP_WORDS:
+    occurences= data.count(wordsl)
+    starnote=(int(occurences)* "*")
+    if wordsla in STOP_WORDS:
         continue
     else:
-        newlist+=words, occurences
-        print(newlist)
+        newlist+=wordsla,starnote
+        result =newlist
+        finalstring = [wordsla, occurences, starnote]
+    
+        blah=(f"{str(wordsla):<15}" +"|" + f"{str(occurences):<5}" + f"{str(starnote):<3}")
+        print(blah)
+       
+       
+                
+      
 
