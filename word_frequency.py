@@ -32,23 +32,27 @@ if __name__ == "__main__":
 f=open(file,"r" )
 data=f.read()
 wordlist=data.split()
-
+newlist={}
 
 for words in wordlist:
     wordsl=words.lower()
     wordsla=wordsl.translate(str.maketrans('','',string.punctuation))
-    newlist=[]
-    occurences= data.count(wordsl)
+    occurences= data.count(wordsla)
     starnote=(int(occurences)* "*")
     if wordsla in STOP_WORDS:
         continue
-    else:
-        newlist+=wordsla,starnote
-        result =newlist
-        finalstring = [wordsla, occurences, starnote]
     
-        blah=(f"{str(wordsla):<15}" +"|" + f"{str(occurences):<5}" + f"{str(starnote):<3}")
-        print(blah)
+    if wordsla not in newlist:
+        newlist[wordsla] = 1
+        continue
+    newlist[wordsla]+=1
+
+sorted_newlist =dict(sorted(newlist.items(), key=lambda item: item[1], reverse=True))
+
+keys = sorted_newlist.keys()
+for key in keys:
+    print(f"{key:<15}" +"|" + f"{sorted_newlist[key]:<5}" + "*" * sorted_newlist[key])
+
        
        
                 
